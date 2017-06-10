@@ -1,0 +1,16 @@
+server:
+  port: 8088
+
+spring:
+  # database
+  datasource:
+    url: jdbc:mysql://localhost/time_master
+    username: codingeye
+    password: master123
+    driver-class-name: org.gjt.mm.mysql.Driver
+
+# mybatis
+mybatis:
+  type-aliases-package: com.codingeye.tm.pojo
+  mapper-locations:
+    - mappers/ActivityMapper.xml
