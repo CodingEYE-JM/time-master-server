@@ -18,6 +18,20 @@ public class ActivityWrapper {
     private LocalDateTime update_time;
     private List<ActivityUnit> activities = new ArrayList<>();
 
+    public ActivityWrapper(){
+        this.id = Integer.MAX_VALUE;
+        this.username = "nobody";
+
+        this.activities.add(new ActivityUnit("eating", false));
+        this.activities.add(new ActivityUnit("learning", false));
+        this.activities.add(new ActivityUnit("sports", false));
+        this.activities.add(new ActivityUnit("working", false));
+        this.activities.add(new ActivityUnit("sleeping", false));
+        this.activities.add(new ActivityUnit("reading", false));
+        this.activities.add(new ActivityUnit("playing", false));
+        this.activities.add(new ActivityUnit("shopping", false));
+    }
+
     public ActivityWrapper(Activity activity) {
         this.id = activity.getId();
         this.username = activity.getUsername();

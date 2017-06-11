@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 /**
@@ -24,9 +25,11 @@ public class ActivityController {
     @GetMapping("/{year}/{month}/{day}")
     public ActivityWrapper getActivitiesOfDay(@PathVariable("year") int year,
                                               @PathVariable("month") int month,
-                                              @PathVariable("day") int day){
+                                              @PathVariable("day") int day,
+                                              HttpServletResponse response) {
         LocalDate activeDate = LocalDate.of(year, month, day);
-        Activity ac = activityMapper.selectByUserAndDate("eater", activeDate.toString());
-        return new ActivityWrapper(ac);
+        Activity activity = activityMapper.selectByUserAndDate("eater", activeDate.toString());
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        return activity != null ? new ActivityWrapper(activity) : new ActivityWrapper();
     }
 }
