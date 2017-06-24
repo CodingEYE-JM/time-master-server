@@ -5,18 +5,12 @@
 <mapper namespace="com.codingeye.tm.dao.ActivityMapper">
 
     <sql id="Base_Column_List" >
-        id, username, active_date, eating, learning, sports, working, sleeping, reading, playing, create_time, update_time
-    </sql>
-
-    <sql id="Select_Base_Column_List" >
-        id, username, date_format(active_date,'%Y-%m-%d'),
-        eating, learning, sports, working, sleeping, reading, playing,
-        date_format(create_time,'%Y-%m-%d'), date_format(update_time,'%Y-%m-%d')
+        id, username, active_date, eating, learning, sports, working, sleeping, reading, playing, shopping, create_time, update_time
     </sql>
 
     <select id="selectByUserAndDate" resultType="Activity">
         SELECT
-        <include refid="Select_Base_Column_List" />
+        <include refid="Base_Column_List" />
         FROM tm_activity WHERE username = #{username}
         AND date_format(active_date,'%Y-%m-%d') = #{active_date};
     </select>

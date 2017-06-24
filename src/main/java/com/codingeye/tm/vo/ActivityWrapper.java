@@ -4,6 +4,7 @@ import com.codingeye.tm.pojo.Activity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +36,9 @@ public class ActivityWrapper {
     public ActivityWrapper(Activity activity) {
         this.id = activity.getId();
         this.username = activity.getUsername();
-        this.active_date = activity.getActive_date();
-        this.create_time = activity.getCreate_time();
-        this.update_time = activity.getUpdate_time();
+        this.active_date = activity.getActive_date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.create_time = activity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        this.update_time = activity.getUpdate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
         this.activities.add(new ActivityUnit("eating", activity.isEating()));
         this.activities.add(new ActivityUnit("learning", activity.isLearning()));
