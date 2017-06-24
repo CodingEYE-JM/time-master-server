@@ -8,11 +8,23 @@
         id, username, active_date, eating, learning, sports, working, sleeping, reading, playing, shopping, create_time, update_time
     </sql>
 
+    <sql id="Select_Report_Column_List" >
+        sum(eating) eatingCount, sum(learning) learningCount, sum(sports) sportsCount, sum(working) workingCount,
+        sum(sleeping) sleepingCount, sum(reading) readingCount, sum(playing) playingCount, sum(shopping) shoppingCount
+    </sql>
+
     <select id="selectByUserAndDate" resultType="Activity">
         SELECT
         <include refid="Base_Column_List" />
         FROM tm_activity WHERE username = #{username}
         AND date_format(active_date,'%Y-%m-%d') = #{active_date};
+    </select>
+
+    <select id="selectByUserAndMonth" resultType="ReportActivity">
+        SELECT
+        <include refid="Select_Report_Column_List" />
+        FROM tm_activity WHERE username = #{username}
+        AND date_format(active_date,'%Y%m') = #{yearMonth};
     </select>
 
 </mapper>

@@ -23,14 +23,14 @@ public class ActivityWrapper {
         this.id = Integer.MAX_VALUE;
         this.username = "nobody";
 
-        this.activities.add(new ActivityUnit("eating", false));
-        this.activities.add(new ActivityUnit("learning", false));
-        this.activities.add(new ActivityUnit("sports", false));
-        this.activities.add(new ActivityUnit("working", false));
-        this.activities.add(new ActivityUnit("sleeping", false));
-        this.activities.add(new ActivityUnit("reading", false));
-        this.activities.add(new ActivityUnit("playing", false));
-        this.activities.add(new ActivityUnit("shopping", false));
+        this.activities.add(new ActivityUnit("吃饭", false));
+        this.activities.add(new ActivityUnit("学习", false));
+        this.activities.add(new ActivityUnit("运动", false));
+        this.activities.add(new ActivityUnit("工作", false));
+        this.activities.add(new ActivityUnit("睡觉", false));
+        this.activities.add(new ActivityUnit("阅读", false));
+        this.activities.add(new ActivityUnit("游戏", false));
+        this.activities.add(new ActivityUnit("购物", false));
     }
 
     public ActivityWrapper(Activity activity) {
@@ -40,14 +40,14 @@ public class ActivityWrapper {
         this.create_time = activity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
         this.update_time = activity.getUpdate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-        this.activities.add(new ActivityUnit("eating", activity.isEating()));
-        this.activities.add(new ActivityUnit("learning", activity.isLearning()));
-        this.activities.add(new ActivityUnit("sports", activity.isSports()));
-        this.activities.add(new ActivityUnit("working", activity.isWorking()));
-        this.activities.add(new ActivityUnit("sleeping", activity.isSleeping()));
-        this.activities.add(new ActivityUnit("reading", activity.isReading()));
-        this.activities.add(new ActivityUnit("playing", activity.isPlaying()));
-        this.activities.add(new ActivityUnit("shopping", activity.isShopping()));
+        this.activities.add(new ActivityUnit("吃饭", activity.isEating()));
+        this.activities.add(new ActivityUnit("学习", activity.isLearning()));
+        this.activities.add(new ActivityUnit("运动", activity.isSports()));
+        this.activities.add(new ActivityUnit("工作", activity.isWorking()));
+        this.activities.add(new ActivityUnit("睡觉", activity.isSleeping()));
+        this.activities.add(new ActivityUnit("阅读", activity.isReading()));
+        this.activities.add(new ActivityUnit("游戏", activity.isPlaying()));
+        this.activities.add(new ActivityUnit("购物", activity.isShopping()));
     }
 
     public int getId() {
