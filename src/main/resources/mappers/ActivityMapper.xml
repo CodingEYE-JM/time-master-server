@@ -4,27 +4,69 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.codingeye.tm.dao.ActivityMapper">
 
-    <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
         id, username, active_date, eating, learning, sports, working, sleeping, reading, playing, shopping, create_time, update_time
     </sql>
 
-    <sql id="Select_Report_Column_List" >
+    <sql id="Select_Report_Column_List">
         sum(eating) eatingCount, sum(learning) learningCount, sum(sports) sportsCount, sum(working) workingCount,
         sum(sleeping) sleepingCount, sum(reading) readingCount, sum(playing) playingCount, sum(shopping) shoppingCount
     </sql>
 
+    <sql id="Insert_Column_List">
+        username, active_date, eating, learning, sports, working, sleeping, reading, playing, shopping, create_time, update_time
+    </sql>
+
+    <sql id="Update_Column_List">
+        eating, learning, sports, working, sleeping, reading, playing, shopping, update_time
+    </sql>
+
     <select id="selectByUserAndDate" resultType="DailyActivity">
         SELECT
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         FROM tm_activity WHERE username = #{username}
         AND date_format(active_date,'%Y-%m-%d') = #{active_date};
     </select>
 
     <select id="selectByUserAndMonth" resultType="MonthlyActivity">
         SELECT
-        <include refid="Select_Report_Column_List" />
+        <include refid="Select_Report_Column_List"/>
         FROM tm_activity WHERE username = #{username}
         AND date_format(active_date,'%Y%m') = #{yearMonth};
     </select>
 
+    <insert id="insertByUserAndDate" parameterType="DailyActivity">
+        INSERT INTO tm_activity
+        (<include refid="Insert_Column_List"/>)
+        VALUES(
+        #{activity.username},
+        #{activity.active_date},
+        #{activity.eating},
+        #{activity.learning},
+        #{activity.sports},
+        #{activity.working},
+        #{activity.sleeping},
+        #{activity.reading},
+        #{activity.playing},
+        #{activity.shopping},
+        now(),
+        now()
+        )
+    </insert>
+
+    <update id="updateByUserAndDate" parameterType="DailyActivity">
+        UPDATE tm_activity
+        SET
+        username = #{activity.username},
+        eating = #{activity.eating},
+        learning = #{activity.learning},
+        sports = #{activity.sports},
+        working = #{activity.working},
+        sleeping = #{activity.sleeping},
+        reading = #{activity.reading},
+        playing = #{activity.playing},
+        shopping = #{activity.shopping},
+        update_time = now()
+        WHERE id = #{activity.id}
+    </update>
 </mapper>

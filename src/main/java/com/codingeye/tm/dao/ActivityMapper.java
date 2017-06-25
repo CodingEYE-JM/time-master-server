@@ -17,4 +17,8 @@ public interface ActivityMapper {
 
     MonthlyActivity selectByUserAndMonth(@Param("username") String username,
                                          @Param("yearMonth") String yearMonth);
+
+    void insertByUserAndDate(@Param("activity") DailyActivity activity);
+
+    void updateByUserAndDate(@Param("activity") DailyActivity activity);
 }
