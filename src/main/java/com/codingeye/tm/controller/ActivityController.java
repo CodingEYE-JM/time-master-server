@@ -2,8 +2,8 @@ package com.codingeye.tm.controller;
 
 import com.codingeye.tm.dao.ActivityMapper;
 
-import com.codingeye.tm.pojo.Activity;
-import com.codingeye.tm.pojo.ReportActivity;
+import com.codingeye.tm.pojo.DailyActivity;
+import com.codingeye.tm.pojo.MonthlyActivity;
 import com.codingeye.tm.vo.ActivityWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,13 +24,12 @@ public class ActivityController {
     private ActivityMapper activityMapper;
 
     @GetMapping("/{year}/{month}")
-    public ReportActivity getReportsOfMonth(@PathVariable("year") String year,
-                                            @PathVariable("month") String month,
-                                            HttpServletResponse response) {
-        ReportActivity reportActivity = activityMapper.selectByUserAndMonth("eater", year + month);
+    public MonthlyActivity getReportsOfMonth(@PathVariable("year") String year,
+                                             @PathVariable("month") String month,
+                                             HttpServletResponse response) {
+        MonthlyActivity monthlyActivity = activityMapper.selectByUserAndMonth("eater", year + month);
         response.setHeader("Access-Control-Allow-Origin", "*");
-        System.out.println(reportActivity.getEatingCount());
-        return reportActivity;
+        return monthlyActivity;
     }
 
     @GetMapping("/{year}/{month}/{day}")
@@ -39,9 +38,8 @@ public class ActivityController {
                                               @PathVariable("day") int day,
                                               HttpServletResponse response) {
         LocalDate activeDate = LocalDate.of(year, month, day);
-        System.out.println(activeDate.toString());
-        Activity activity = activityMapper.selectByUserAndDate("eater", activeDate.toString());
+        DailyActivity dailyActivity = activityMapper.selectByUserAndDate("eater", activeDate.toString());
         response.setHeader("Access-Control-Allow-Origin", "*");
-        return activity != null ? new ActivityWrapper(activity) : new ActivityWrapper();
+        return dailyActivity != null ? new ActivityWrapper(dailyActivity) : new ActivityWrapper();
     }
 }

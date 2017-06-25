@@ -3,7 +3,7 @@ package com.codingeye.tm.pojo;
 /**
  * Created by Camon on 2017/6/24.
  */
-public class ReportActivity {
+public class MonthlyActivity {
     private int eatingCount;
     private int learningCount;
     private int sportsCount;
@@ -13,9 +13,9 @@ public class ReportActivity {
     private int playingCount;
     private int shoppingCount;
 
-    public ReportActivity(){}
+    public MonthlyActivity(){}
 
-    public ReportActivity(int eatingCount, int learningCount, int sportsCount, int workingCount, int sleepingCount, int readingCount, int playingCount, int shoppingCount) {
+    public MonthlyActivity(int eatingCount, int learningCount, int sportsCount, int workingCount, int sleepingCount, int readingCount, int playingCount, int shoppingCount) {
         this.eatingCount = eatingCount;
         this.learningCount = learningCount;
         this.sportsCount = sportsCount;
@@ -92,7 +92,7 @@ public class ReportActivity {
 
     @Override
     public String toString() {
-        return "ReportActivity{" +
+        return "MonthlyActivity{" +
                 "eatingCount=" + eatingCount +
                 ", learningCount=" + learningCount +
                 ", sportsCount=" + sportsCount +

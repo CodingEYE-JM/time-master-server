@@ -14,3 +14,4 @@ mybatis:
   type-aliases-package: com.codingeye.tm.pojo
   mapper-locations:
     - mappers/ActivityMapper.xml
+    - mappers/RecommendMapper.xml

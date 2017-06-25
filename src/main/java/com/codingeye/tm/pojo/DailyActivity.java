@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by Camon on 2017/6/10.
  */
-public class Activity {
+public class DailyActivity {
 
     private int id;
     private String username;
@@ -23,9 +23,9 @@ public class Activity {
     private Date create_time;
     private Date update_time;
 
-    public Activity(){}
+    public DailyActivity(){}
 
-    public Activity(int id, String username, Date active_date, boolean eating, boolean learning, boolean sports, boolean working, boolean sleeping, boolean reading, boolean playing, boolean shopping, Date create_time, Date update_time) {
+    public DailyActivity(int id, String username, Date active_date, boolean eating, boolean learning, boolean sports, boolean working, boolean sleeping, boolean reading, boolean playing, boolean shopping, Date create_time, Date update_time) {
         this.id = id;
         this.username = username;
         this.active_date = active_date;
@@ -147,7 +147,7 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity{" +
+        return "DailyActivity{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", active_date=" + active_date +

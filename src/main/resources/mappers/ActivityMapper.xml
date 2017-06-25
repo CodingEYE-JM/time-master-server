@@ -13,14 +13,14 @@
         sum(sleeping) sleepingCount, sum(reading) readingCount, sum(playing) playingCount, sum(shopping) shoppingCount
     </sql>
 
-    <select id="selectByUserAndDate" resultType="Activity">
+    <select id="selectByUserAndDate" resultType="DailyActivity">
         SELECT
         <include refid="Base_Column_List" />
         FROM tm_activity WHERE username = #{username}
         AND date_format(active_date,'%Y-%m-%d') = #{active_date};
     </select>
 
-    <select id="selectByUserAndMonth" resultType="ReportActivity">
+    <select id="selectByUserAndMonth" resultType="MonthlyActivity">
         SELECT
         <include refid="Select_Report_Column_List" />
         FROM tm_activity WHERE username = #{username}

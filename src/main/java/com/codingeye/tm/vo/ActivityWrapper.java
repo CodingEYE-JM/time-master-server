@@ -1,6 +1,6 @@
 package com.codingeye.tm.vo;
 
-import com.codingeye.tm.pojo.Activity;
+import com.codingeye.tm.pojo.DailyActivity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,21 +33,21 @@ public class ActivityWrapper {
         this.activities.add(new ActivityUnit("购物", false));
     }
 
-    public ActivityWrapper(Activity activity) {
-        this.id = activity.getId();
-        this.username = activity.getUsername();
-        this.active_date = activity.getActive_date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.create_time = activity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        this.update_time = activity.getUpdate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    public ActivityWrapper(DailyActivity dailyActivity) {
+        this.id = dailyActivity.getId();
+        this.username = dailyActivity.getUsername();
+        this.active_date = dailyActivity.getActive_date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.create_time = dailyActivity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        this.update_time = dailyActivity.getUpdate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-        this.activities.add(new ActivityUnit("吃饭", activity.isEating()));
-        this.activities.add(new ActivityUnit("学习", activity.isLearning()));
-        this.activities.add(new ActivityUnit("运动", activity.isSports()));
-        this.activities.add(new ActivityUnit("工作", activity.isWorking()));
-        this.activities.add(new ActivityUnit("睡觉", activity.isSleeping()));
-        this.activities.add(new ActivityUnit("阅读", activity.isReading()));
-        this.activities.add(new ActivityUnit("游戏", activity.isPlaying()));
-        this.activities.add(new ActivityUnit("购物", activity.isShopping()));
+        this.activities.add(new ActivityUnit("吃饭", dailyActivity.isEating()));
+        this.activities.add(new ActivityUnit("学习", dailyActivity.isLearning()));
+        this.activities.add(new ActivityUnit("运动", dailyActivity.isSports()));
+        this.activities.add(new ActivityUnit("工作", dailyActivity.isWorking()));
+        this.activities.add(new ActivityUnit("睡觉", dailyActivity.isSleeping()));
+        this.activities.add(new ActivityUnit("阅读", dailyActivity.isReading()));
+        this.activities.add(new ActivityUnit("游戏", dailyActivity.isPlaying()));
+        this.activities.add(new ActivityUnit("购物", dailyActivity.isShopping()));
     }
 
     public int getId() {
