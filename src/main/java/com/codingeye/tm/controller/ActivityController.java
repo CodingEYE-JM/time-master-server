@@ -28,8 +28,8 @@ public class ActivityController {
     @GetMapping("/{year}/{month}")
     public MonthlyActivity getReportsOfMonth(@PathVariable("year") String year,
                                              @PathVariable("month") String month,
-                                             HttpServletResponse response) {
-        MonthlyActivity monthlyActivity = activityMapper.selectByUserAndMonth("admin", year + month);
+                                             @Param("username") String username) {
+        MonthlyActivity monthlyActivity = activityMapper.selectByUserAndMonth(username, year + month);
         return monthlyActivity;
     }
 
@@ -38,9 +38,9 @@ public class ActivityController {
     public ActivityWrapper getActivitiesOfDay(@PathVariable("year") int year,
                                               @PathVariable("month") int month,
                                               @PathVariable("day") int day,
-                                              HttpServletResponse response) {
-        LocalDate activeDate = LocalDate.of(year, month , day);
-        DailyActivity dailyActivity = activityMapper.selectByUserAndDate("admin", activeDate.toString());
+                                              @Param("username") String username) {
+        LocalDate activeDate = LocalDate.of(year, month, day);
+        DailyActivity dailyActivity = activityMapper.selectByUserAndDate(username, activeDate.toString());
         return dailyActivity != null ? new ActivityWrapper(dailyActivity) : new ActivityWrapper();
     }
 
@@ -58,10 +58,10 @@ public class ActivityController {
                                    @Param("reading") boolean reading,
                                    @Param("playing") boolean playing,
                                    @Param("shopping") boolean shopping,
-                                   HttpServletResponse response) {
+                                   @Param("username") String username) {
         Date activeDate = new GregorianCalendar(year, month - 1, day).getTime();
         DailyActivity activity = new DailyActivity(
-                id, "admin", activeDate, eating, learning, sports, working, sleeping, reading, playing, shopping, new Date(), new Date()
+                id, username, activeDate, eating, learning, sports, working, sleeping, reading, playing, shopping, new Date(), new Date()
         );
         if (id == Integer.MAX_VALUE) {
             activityMapper.insertByUserAndDate(activity);
