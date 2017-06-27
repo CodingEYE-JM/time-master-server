@@ -19,6 +19,12 @@
         AND password = #{password};
     </select>
 
+    <select id="getUserType" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM tm_user WHERE username = #{username}
+    </select>
+
     <insert id="insertUserBySignUp">
         INSERT INTO tm_user
         (<include refid="Insert_Column_List"/>)
@@ -30,5 +36,11 @@
         now()
         )
     </insert>
+
+    <update id="updateUserType">
+        UPDATE tm_user
+        SET type = #{type}
+        WHERE username = #{username}
+    </update>
 
 </mapper>

@@ -38,4 +38,10 @@ public class UserController {
         user.setUsername(username);
         return user;
     }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("/type")
+    public User getUserType(@Param("username") String username){
+        return userMapper.getUserType(username);
+    }
 }

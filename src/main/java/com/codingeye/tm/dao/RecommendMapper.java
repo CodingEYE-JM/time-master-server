@@ -12,5 +12,6 @@ import java.util.List;
 @Mapper
 public interface RecommendMapper {
 
-    List<User> getSameTypeUsers(@Param("type") String type);
+    List<User> getSameTypeUsers(@Param("username") String username,
+                                @Param("type") String type);
 }

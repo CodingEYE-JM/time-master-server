@@ -11,7 +11,9 @@
     <select id="getSameTypeUsers" resultType="User">
         SELECT
         <include refid="Base_Column_List" />
-        FROM tm_user WHERE type = #{type};
+        FROM tm_user
+        WHERE type = #{type}
+        AND username != #{username};
     </select>
 
 </mapper>

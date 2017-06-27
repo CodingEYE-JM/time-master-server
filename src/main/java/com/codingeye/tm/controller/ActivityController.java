@@ -2,6 +2,7 @@ package com.codingeye.tm.controller;
 
 import com.codingeye.tm.dao.ActivityMapper;
 
+import com.codingeye.tm.dao.UserMapper;
 import com.codingeye.tm.pojo.DailyActivity;
 import com.codingeye.tm.pojo.MonthlyActivity;
 import com.codingeye.tm.vo.ActivityWrapper;
@@ -23,6 +24,9 @@ import java.util.GregorianCalendar;
 public class ActivityController {
     @Autowired
     private ActivityMapper activityMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @CrossOrigin(origins = "*")
     @GetMapping("/{year}/{month}")
@@ -68,5 +72,50 @@ public class ActivityController {
         } else {
             activityMapper.updateByUserAndDate(activity);
         }
+
+        String yearMonth = month < 10? year + "0" + month : "" + year + month;
+        MonthlyActivity monthlyActivity = activityMapper.selectByUserAndMonth(username, yearMonth);
+        modifyUserType(monthlyActivity, username);
+    }
+
+    private void modifyUserType(MonthlyActivity monthlyActivity, String username){
+        
+        int maxCount = 0;
+        String userType = "";
+        
+        if (monthlyActivity.getEatingCount() > maxCount) {
+            maxCount = monthlyActivity.getEatingCount();
+            userType = "EATER";
+        }
+        if (monthlyActivity.getLearningCount() > maxCount) {
+            maxCount = monthlyActivity.getLearningCount();
+            userType = "LEARNER";
+        }
+        if (monthlyActivity.getSportsCount() > maxCount) {
+            maxCount = monthlyActivity.getSportsCount();
+            userType = "SPORTSMAN";
+        }
+        if (monthlyActivity.getWorkingCount() > maxCount) {
+            maxCount = monthlyActivity.getWorkingCount();
+            userType = "WORKER";
+        }
+        if (monthlyActivity.getSleepingCount() > maxCount) {
+            maxCount = monthlyActivity.getSleepingCount();
+            userType = "SLEEPER";
+        }
+        if (monthlyActivity.getReadingCount() > maxCount) {
+            maxCount = monthlyActivity.getReadingCount();
+            userType = "READER";
+        }
+        if (monthlyActivity.getPlayingCount() > maxCount) {
+            maxCount = monthlyActivity.getPlayingCount();
+            userType = "PLAYER";
+        }
+        if (monthlyActivity.getShoppingCount() > maxCount) {
+            maxCount = monthlyActivity.getShoppingCount();
+            userType = "SHOPPER";
+        }
+
+        userMapper.updateUserType(username, userType);
     }
 }

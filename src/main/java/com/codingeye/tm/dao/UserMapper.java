@@ -13,6 +13,12 @@ public interface UserMapper {
 
     User selectUserBySignIn(@Param("username") String username,
                             @Param("password") String password);
+
     void insertUserBySignUp(@Param("username") String username,
                             @Param("password") String password);
+
+    void updateUserType(@Param("username") String username,
+                        @Param("type") String type);
+
+    User getUserType(@Param("username") String username);
 }
