@@ -31,12 +31,16 @@ public class UserController {
     @PostMapping("/signup")
     public User registerUserInfo(@Param("username") String username,
                                  @Param("password") String password) {
-
-        password = MD5Util.MD5EncodeUtf8(password);
-        userMapper.insertUserBySignUp(username, password);
-        User user = new User();
-        user.setUsername(username);
-        return user;
+        User user = userMapper.getUserType(username);
+        if(user != null){
+            user.setUsername(null);
+            return user;
+        }else {
+            password = MD5Util.MD5EncodeUtf8(password);
+            userMapper.insertUserBySignUp(username, password);
+            user.setUsername(username);
+            return user;
+        }
     }
 
     @CrossOrigin(origins = "*")
