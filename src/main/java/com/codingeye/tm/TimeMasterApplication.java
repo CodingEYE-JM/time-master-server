@@ -9,3 +9,14 @@ public class TimeMasterApplication {
 		SpringApplication.run(TimeMasterApplication.class, args);
 	}
 }
+
+/*public class TimeMasterApplication extends SpringBootServletInitializer {
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(TimeMasterApplication.class);
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(TimeMasterApplication.class, args);
+	}
+}*/

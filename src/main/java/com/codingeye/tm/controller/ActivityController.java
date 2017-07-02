@@ -6,12 +6,10 @@ import com.codingeye.tm.dao.UserMapper;
 import com.codingeye.tm.pojo.DailyActivity;
 import com.codingeye.tm.pojo.MonthlyActivity;
 import com.codingeye.tm.vo.ActivityWrapper;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,6 +19,7 @@ import java.util.GregorianCalendar;
  */
 @RestController
 @RequestMapping("/api/activity/")
+@CrossOrigin(origins = "*")
 public class ActivityController {
     @Autowired
     private ActivityMapper activityMapper;
@@ -28,7 +27,7 @@ public class ActivityController {
     @Autowired
     private UserMapper userMapper;
 
-    @CrossOrigin(origins = "*")
+
     @GetMapping("/{year}/{month}")
     public MonthlyActivity getReportsOfMonth(@PathVariable("year") String year,
                                              @PathVariable("month") String month,
@@ -37,7 +36,6 @@ public class ActivityController {
         return monthlyActivity;
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/{year}/{month}/{day}")
     public ActivityWrapper getActivitiesOfDay(@PathVariable("year") int year,
                                               @PathVariable("month") int month,
@@ -48,7 +46,6 @@ public class ActivityController {
         return dailyActivity != null ? new ActivityWrapper(dailyActivity) : new ActivityWrapper();
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/{year}/{month}/{day}")
     public void setActivitiesOfDay(@PathVariable("year") int year,
                                    @PathVariable("month") int month,

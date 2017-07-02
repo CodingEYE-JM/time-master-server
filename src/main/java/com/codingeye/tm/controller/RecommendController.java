@@ -12,11 +12,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/recommend/")
+@CrossOrigin(origins = "*")
 public class RecommendController {
     @Autowired
     private RecommendMapper recommendMapper;
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/{type}")
     public List<User> getSameTypeUsers(@PathVariable("type") String type,
                                        @Param("username") String username) {

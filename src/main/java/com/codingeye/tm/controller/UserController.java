@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user/")
+@CrossOrigin(origins = "*")
 public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/signin")
     public User getUserInfo(@Param("username") String username,
                             @Param("password") String password) {
@@ -27,7 +27,6 @@ public class UserController {
         return user;
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/signup")
     public User registerUserInfo(@Param("username") String username,
                                  @Param("password") String password) {
@@ -36,6 +35,7 @@ public class UserController {
             user.setUsername(null);
             return user;
         }else {
+            user = new User();
             password = MD5Util.MD5EncodeUtf8(password);
             userMapper.insertUserBySignUp(username, password);
             user.setUsername(username);
@@ -43,7 +43,6 @@ public class UserController {
         }
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("/type")
     public User getUserType(@Param("username") String username){
         return userMapper.getUserType(username);
