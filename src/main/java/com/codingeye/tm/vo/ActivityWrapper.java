@@ -36,9 +36,9 @@ public class ActivityWrapper {
     public ActivityWrapper(DailyActivity dailyActivity) {
         this.id = dailyActivity.getId();
         this.username = dailyActivity.getUsername();
-        this.active_date = dailyActivity.getActive_date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        this.create_time = dailyActivity.getCreate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        this.update_time = dailyActivity.getUpdate_time().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        this.active_date = dailyActivity.getActive_date();
+        this.create_time = dailyActivity.getCreate_time();
+        this.update_time = dailyActivity.getUpdate_time();
 
         this.activities.add(new ActivityUnit("吃饭", dailyActivity.isEating()));
         this.activities.add(new ActivityUnit("学习", dailyActivity.isLearning()));

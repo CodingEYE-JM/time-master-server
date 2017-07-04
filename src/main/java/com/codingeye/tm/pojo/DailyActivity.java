@@ -2,7 +2,6 @@ package com.codingeye.tm.pojo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Created by Camon on 2017/6/10.
@@ -11,7 +10,7 @@ public class DailyActivity {
 
     private int id;
     private String username;
-    private Date active_date;
+    private LocalDate active_date;
     private boolean eating;
     private boolean learning;
     private boolean sports;
@@ -20,12 +19,12 @@ public class DailyActivity {
     private boolean reading;
     private boolean playing;
     private boolean shopping;
-    private Date create_time;
-    private Date update_time;
+    private LocalDateTime create_time;
+    private LocalDateTime update_time;
 
     public DailyActivity(){}
 
-    public DailyActivity(int id, String username, Date active_date, boolean eating, boolean learning, boolean sports, boolean working, boolean sleeping, boolean reading, boolean playing, boolean shopping, Date create_time, Date update_time) {
+    public DailyActivity(int id, String username, LocalDate active_date, boolean eating, boolean learning, boolean sports, boolean working, boolean sleeping, boolean reading, boolean playing, boolean shopping, LocalDateTime create_time, LocalDateTime update_time) {
         this.id = id;
         this.username = username;
         this.active_date = active_date;
@@ -57,11 +56,11 @@ public class DailyActivity {
         this.username = username;
     }
 
-    public Date getActive_date() {
+    public LocalDate getActive_date() {
         return active_date;
     }
 
-    public void setActive_date(Date active_date) {
+    public void setActive_date(LocalDate active_date) {
         this.active_date = active_date;
     }
 
@@ -129,19 +128,19 @@ public class DailyActivity {
         this.shopping = shopping;
     }
 
-    public Date getCreate_time() {
+    public LocalDateTime getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(Date create_time) {
+    public void setCreate_time(LocalDateTime create_time) {
         this.create_time = create_time;
     }
 
-    public Date getUpdate_time() {
+    public LocalDateTime getUpdate_time() {
         return update_time;
     }
 
-    public void setUpdate_time(Date update_time) {
+    public void setUpdate_time(LocalDateTime update_time) {
         this.update_time = update_time;
     }
 

@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 /**
  * Created by Camon on 2017/6/10.
@@ -60,9 +59,9 @@ public class ActivityController {
                                    @Param("playing") boolean playing,
                                    @Param("shopping") boolean shopping,
                                    @Param("username") String username) {
-        Date activeDate = new GregorianCalendar(year, month - 1, day).getTime();
+        LocalDate activeDate = LocalDate.of(year, month, day);
         DailyActivity activity = new DailyActivity(
-                id, username, activeDate, eating, learning, sports, working, sleeping, reading, playing, shopping, new Date(), new Date()
+                id, username, activeDate, eating, learning, sports, working, sleeping, reading, playing, shopping, LocalDateTime.now(), LocalDateTime.now()
         );
         if (id == Integer.MAX_VALUE) {
             activityMapper.insertByUserAndDate(activity);
